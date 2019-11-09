@@ -1,17 +1,52 @@
 {
-  "name": "salon_signage",
+  "name": "signage",
+  "description": "Digital signage player",
+  "author": {
+    "name": "Thai Nguyen",
+    "url": "https://thainguyen.dev"
+  },
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "react": "^16.11.0",
-    "react-dom": "^16.11.0",
-    "react-scripts": "3.2.0"
+  "main": "public/electron.js",
+  "homepage": "./",
+  "build": {
+    "appId": "com.salon.signage",
+    "productName": "Salon Signage",
+    "mac": {
+      "category": "public.app-category.utilities",
+      "target": "dmg"
+    },
+    "win": {},
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    }
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "react-start": "react-scripts start",
+    "react-build": "react-scripts build",
+    "react-test": "react-scripts test",
+    "react-eject": "react-scripts eject",
+    "electron-dev": "concurrently \"BROWSER=none yarn react-start\" \"wait-on http://localhost:3000 && electron .\"",
+    "postinstall": "electron-builder install-app-deps",
+    "preelectron-pack": "yarn react-build",
+    "mac": "yarn react-scripts build && electron-builder --mac",
+    "win": "yarn react-scripts build && electron-builder --win"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.6.0",
+    "@material-ui/icons": "^4.5.1",
+    "date-fns": "^2.7.0",
+    "electron-is-dev": "^1.1.0",
+    "electron-reload": "^1.5.0",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.2.0",
+    "typeface-roboto": "0.0.75"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -27,5 +62,14 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "concurrently": "^5.0.0",
+    "cross-env": "^6.0.3",
+    "electron": "^7.1.1",
+    "electron-builder": "^22.1.0",
+    "nodemon": "^1.19.4",
+    "prettier": "^1.18.2",
+    "wait-on": "^3.3.0"
   }
 }
