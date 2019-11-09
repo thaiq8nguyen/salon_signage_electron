@@ -32,7 +32,6 @@
     "react-eject": "react-scripts eject",
     "electron-dev": "concurrently \"BROWSER=none yarn react-start\" \"wait-on http://localhost:3000 && electron .\"",
     "postinstall": "electron-builder install-app-deps",
-    "preelectron-pack": "yarn react-build",
     "mac": "yarn react-scripts build && electron-builder --mac",
     "win": "yarn react-scripts build && electron-builder --win"
   },

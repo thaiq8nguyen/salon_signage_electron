@@ -2,16 +2,14 @@ import React, { useEffect, useState } from "react";
 import { getHours, getMinutes } from "date-fns";
 import Frame from "../../components/Frame";
 const Signage = () => {
-  const [src, setSrc] = useState(
-    "https://salon-signage-fe.herokuapp.com/signage"
-  );
+  const [src, setSrc] = useState("https://salon-signage.herokuapp.com/signage");
 
   useEffect(() => {
     const interval = setInterval(() => {
       const now = new Date();
-      if (getHours(now) === 18 && getMinutes(now) === 2) {
+      if (getHours(now) === 9 && getMinutes(now) === 5) {
         setSrc("");
-        setSrc("https://salon-signage-fe.herokuapp.com/signage");
+        setSrc("https://salon-signage.herokuapp.com/signage");
       }
     }, 1000 * 60);
 

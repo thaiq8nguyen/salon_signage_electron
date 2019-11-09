@@ -1,14 +1,18 @@
 const { app, Menu, BrowserWindow } = require("electron");
 const isDev = require("electron-is-dev");
-require("electron-reload")(__dirname);
-let mainWindow;
+
+let mainWindow = null;
+
+const isWindows = process.platform === "wind32";
 
 const createWindow = () => {
   mainWindow = new BrowserWindow({
+    backgroundColor: "#F7F7F7",
     width: 1920,
     height: 1080,
     maximizable: true,
     alwaysOnTop: true,
+    fullscreen: true,
     title: "Salon Signage",
     webPreferences: { nodeIntegration: true }
   });
@@ -16,6 +20,10 @@ const createWindow = () => {
   mainWindow.loadURL(
     isDev ? "http://localhost:3000" : `file://${__dirname}/index.html`
   );
+
+  mainWindow.once("ready-to-show", () => {
+    mainWindow.show();
+  });
 
   if (isDev) {
     mainWindow.webContents.openDevTools();
@@ -28,6 +36,19 @@ const createWindow = () => {
 
 const generateMenu = () => {
   const template = [
+    {
+      label: isWindows ? "File" : app.getName(),
+      submenu: [
+        { role: "about" },
+        {
+          label: isWindows ? "Exit" : `Quit ${app.getName()}`,
+          accelerator: isWindows ? "Alt+F4" : "CmdOrCtrl+Q",
+          click() {
+            app.quit();
+          }
+        }
+      ]
+    },
     {
       label: "View",
       submenu: [
