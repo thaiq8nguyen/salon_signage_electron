@@ -14,8 +14,7 @@ const createWindow = () => {
     height: 1080,
     maximizable: true,
     alwaysOnTop: true,
-    fullscreen: true,
-    frame: false,
+
     webPreferences: { nodeIntegration: true }
   });
 

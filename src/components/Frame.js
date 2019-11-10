@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Loading from "../components/Loading";
+
 const displayStyle = {
-  position: "fixed",
-  top: "0px",
-  bottom: "0px",
-  right: "0px",
+  position: "absolute",
+  top: "0",
+  bottom: "0",
+  right: "0",
   width: "100%",
-  border: "none",
-  margin: "0",
-  padding: "0",
-  overflow: "hidden",
-  zIndex: "999999",
+  border: "0",
   height: "100%"
 };
 
@@ -30,13 +27,15 @@ const Frame = ({ src }) => {
       {loading ? (
         <Loading />
       ) : (
-        <iframe
-          src={src}
-          name="standard"
-          seamless
-          title="standard-signage"
-          style={displayStyle}
-        ></iframe>
+        <div>
+          <iframe
+            src={src}
+            name="standard"
+            seamless
+            title="standard-signage"
+            style={displayStyle}
+          ></iframe>
+        </div>
       )}
     </div>
   );
