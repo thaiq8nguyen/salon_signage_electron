@@ -7,13 +7,15 @@ const isWindows = process.platform === "wind32";
 
 const createWindow = () => {
   mainWindow = new BrowserWindow({
+    title: "Salon Signage",
+    center: true,
     backgroundColor: "#F7F7F7",
     width: 1920,
     height: 1080,
     maximizable: true,
     alwaysOnTop: true,
     fullscreen: true,
-    title: "Salon Signage",
+    frame: false,
     webPreferences: { nodeIntegration: true }
   });
 
